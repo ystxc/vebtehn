@@ -20,6 +20,7 @@
             color: #333;
             line-height: 1.6;
             background-color: #f8f9fa;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -127,6 +128,9 @@
             border-radius: 50px;
             font-weight: bold;
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
         
         .btn:hover {
@@ -215,12 +219,37 @@
         }
         
         /* Стили для формы обратной связи */
+        .feedback-section {
+            background: url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            padding: 3rem 0;
+            border-radius: 8px;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feedback-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+        }
+        
         .feedback-form {
             background: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 3rem;
+            width: 50%;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
         }
         
         .form-group {
@@ -235,6 +264,7 @@
         
         .form-group input[type="text"],
         .form-group input[type="email"],
+        .form-group input[type="password"],
         .form-group textarea,
         .form-group select {
             width: 100%;
@@ -304,6 +334,7 @@
         .auth-form h2 {
             margin-bottom: 1.5rem;
             color: #1a2a6c;
+            text-align: center;
         }
         
         footer {
@@ -362,4 +393,237 @@
             .hero p {
                 font-size: 1rem;
             }
+            
+            .feedback-form {
+                width: 90%;
+            }
         }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">Путешествуй с нами</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#feedback">Обратная связь</a></li>
+                    <li><a href="#auth">Войти</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main class="container">
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Откройте для себя мир</h1>
+                <p>Мы предлагаем лучшие туры по всему миру с комфортом и заботой о вас</p>
+                <a href="#" class="btn">Выбрать тур</a>
+            </div>
+        </section>
+
+        
+        <section>
+            <h2>Популярные направления</h2>
+            <div class="destinations">
+                <div class="destination-card">
+                    <img src="i (2).webp" alt="Бали, Индонезия">
+                    <div class="card-content">
+                        <h3>Бали, Индонезия</h3>
+                        <p>Остров богов с прекрасными пляжами, рисовыми террасами и уникальной культурой.</p>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="i.webp" alt="Париж, Франция">
+                    <div class="card-content">
+                        <h3>Париж, Франция</h3>
+                        <p>Город любви с Эйфелевой башней, Лувром и неповторимой атмосферой.</p>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="i (1).webp" alt="Токио, Япония">
+                    <div class="card-content">
+                        <h3>Токио, Япония</h3>
+                        <p>Современный мегаполис с древними традициями, уникальной кухней и технологиями.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section>
+            <h2>Стоимость туров</h2>
+            <div class="pricing">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Направление</th>
+                            <th>Продолжительность</th>
+                            <th>Стоимость на человека</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Бали, Индонезия</td>
+                            <td>10 дней</td>
+                            <td>85 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Париж, Франция</td>
+                            <td>7 дней</td>
+                            <td>65 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Токио, Япония</td>
+                            <td>12 дней</td>
+                            <td>120 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Рим, Италия</td>
+                            <td>8 дней</td>
+                            <td>78 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Нью-Йорк, США</td>
+                            <td>9 дней</td>
+                            <td>95 000 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Форма обратной связи -->
+        <section id="feedback" class="feedback-section">
+            <div class="feedback-form">
+                <h2 style="color: #1a2a6c;">Обратная связь</h2>
+                <form id="feedbackForm" action="https://httpbin.org/post" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">ФИО</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Откуда узнали о нас?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="source" value="search" required> Поисковые системы</label>
+                            <label><input type="radio" name="source" value="social"> Социальные сети</label>
+                            <label><input type="radio" name="source" value="friend"> Рекомендация друзей</label>
+                            <label><input type="radio" name="source" value="other"> Другое</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="type">Тип обращения</label>
+                        <select id="type" name="type" required>
+                            <option value="">Выберите тип обращения</option>
+                            <option value="complaint">Жалоба</option>
+                            <option value="suggestion">Предложение</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Текст сообщения</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attachment">Вложения</label>
+                        <input type="file" id="attachment" name="attachment">
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="consent" name="consent" required>
+                            Даю согласие на обработку персональных данных
+                        </label>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Форма аутентификации -->
+    <section id="auth" class="auth-container">
+        <div class="auth-form">
+            <h2>Вход в систему</h2>
+            <form id="authForm" action="https://httpbin.org/post" method="post">
+                <div class="form-group">
+                    <label for="login">Логин</label>
+                    <input type="text" id="login" name="login" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" name="remember">
+                        Запомнить меня
+                    </label>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn">Войти</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    
+    <footer id="contacts">
+        <div class="container footer-content">
+            <div class="contact-info">
+                <p>Телефон: +7 (123) 456-78-90</p>
+                <p>Email: info@travelwithus.ru</p>
+                <p>Адрес: Москва, ул. Путешественников, 15</p>
+            </div>
+            <div class="social-links">
+                <a href="#">VK</a>
+                <a href="#">Telegram</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Путешествуй с нами. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Очистка формы обратной связи после отправки
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            // Отправка формы происходит на https://httpbin.org/post
+            // После отправки очищаем поля
+            setTimeout(function() {
+                document.getElementById('feedbackForm').reset();
+            }, 100);
+        });
+        
+        // Очистка формы аутентификации после отправки
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            // Отправка формы происходит на https://httpbin.org/post
+            // После отправки очищаем поля
+            setTimeout(function() {
+                document.getElementById('authForm').reset();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
