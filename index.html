@@ -502,7 +502,7 @@
         <section id="feedback" class="feedback-section">
             <div class="feedback-form">
                 <h2 style="color: #1a2a6c;">Обратная связь</h2>
-                <form id="feedbackForm" action="https://httpbin.org/post" method="post" enctype="multipart/form-data">
+                <form id="feedbackForm" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">ФИО</label>
                         <input type="text" id="name" name="name" required>
@@ -561,7 +561,7 @@
     <section id="auth" class="auth-container">
         <div class="auth-form">
             <h2>Вход в систему</h2>
-            <form id="authForm" action="https://httpbin.org/post" method="post">
+            <form id="authForm" method="post">
                 <div class="form-group">
                     <label for="login">Логин</label>
                     <input type="text" id="login" name="login" required>
@@ -607,22 +607,56 @@
     </footer>
 
     <script>
-        // Очистка формы обратной связи после отправки
+        // Обработка формы обратной связи
         document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-            // Отправка формы происходит на https://httpbin.org/post
-            // После отправки очищаем поля
-            setTimeout(function() {
-                document.getElementById('feedbackForm').reset();
-            }, 100);
+            e.preventDefault();
+            
+            // Создаем FormData объект для сбора данных формы
+            const formData = new FormData(this);
+            
+            // Отправляем данные методом POST на https://httpbin.org/post
+            fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Данные формы обратной связи отправлены:', data);
+                alert('Форма успешно отправлена! Проверьте консоль для просмотра отправленных данных.');
+                
+                // Очищаем форму после успешной отправки
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке формы:', error);
+                alert('Произошла ошибка при отправке формы.');
+            });
         });
         
-        // Очистка формы аутентификации после отправки
+        // Обработка формы аутентификации
         document.getElementById('authForm').addEventListener('submit', function(e) {
-            // Отправка формы происходит на https://httpbin.org/post
-            // После отправки очищаем поля
-            setTimeout(function() {
-                document.getElementById('authForm').reset();
-            }, 100);
+            e.preventDefault();
+            
+            // Создаем FormData объект для сбора данных формы
+            const formData = new FormData(this);
+            
+            // Отправляем данные методом POST на https://httpbin.org/post
+            fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Данные формы аутентификации отправлены:', data);
+                alert('Форма успешно отправлена! Проверьте консоль для просмотра отправленных данных.');
+                
+                // Очищаем форму после успешной отправки
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке формы:', error);
+                alert('Произошла ошибка при отправке формы.');
+            });
         });
     </script>
 </body>
