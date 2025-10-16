@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    <?php
+    $page_title = "Путешествуй с нами - лучшие туры по всему миру";
+    echo $page_title;
+    ?>
+    </title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            background: url('главная.webp') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #fdbb2d;
+            color: #333;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #ffa500;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2a6c;
+        }
+        
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .destination-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .destination-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: #1a2a6c;
+        }
+        
+        .pricing {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #1a2a6c;
+            color: white;
+            font-weight: 500;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* Стили для формы обратной связи */
+        .feedback-section {
+            background: url('обратнаясвязь.webp') no-repeat center center/cover;
+            padding: 3rem 0;
+            border-radius: 8px;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feedback-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+        }
+        
+        .feedback-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .radio-group, .checkbox-group {
+            margin-top: 0.5rem;
+        }
+        
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+        
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        /* Стили для формы аутентификации */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('вход.webp') no-repeat center center/cover;
+            position: relative;
+            padding: 2rem;
+        }
+        
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .auth-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            z-index: 1;
+        }
+        
+        .auth-form h2 {
+            margin-bottom: 1.5rem;
+            color: #1a2a6c;
+            text-align: center;
+        }
+        
+        footer {
+            background: #1a2a6c;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-info {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .feedback-form {
+                width: 90%;
+            }
+        }
+    </style>
+   
+<style>
+.selected_menu {
+    background-color: #1a2a6c;
+    color: white !important;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+/* Дополнительные стили для красоты */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #f0f0f0;
+}
+</style>
+</head>
+<body>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">Путешествуй с нами</div>
+            <?php
+            // ДИНАМИЧЕСКОЕ МЕНЮ - массив данных
+            $menu_items = [
+                ['link' => 'index.php', 'text' => 'Главная', 'current' => true],
+                ['link' => 'page2.php', 'text' => 'Обратная связь', 'current' => false],
+                ['link' => 'page3.php', 'text' => 'Контакты', 'current' => false],
+                ['link' => '#auth', 'text' => 'Войти', 'current' => false]
+            ];
+            ?>
+            ?>
+
+            <nav>
+                <ul>
+                    <?php
+                    foreach ($menu_items as $item) {
+                        echo '<li><a href="' . $item['link'] . '"';
+                        if ($item['current']) {
+                            echo ' class="selected_menu"';
+                        }
+                        echo '>' . $item['text'] . '</a></li>';
+                    }
+                    ?>
+                </ul>
+            </nav>
+         </div>
+     </header>
+
+    
+    <main class="container">
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Откройте для себя мир</h1>
+                <p>Мы предлагаем лучшие туры по всему миру с комфортом и заботой о вас</p>
+                <a href="#" class="btn">Выбрать тур</a>
+            </div>
+        </section>
+
+        
+        <section>
+            <h2>Популярные направления</h2>
+            <div class="destinations">
+                <div class="destination-card">
+                    <?php
+                    // ДИНАМИЧЕСКАЯ ЗАГРУЗКА ФОТОГРАФИЙ
+                    $seconds = date('s');
+                    if ($seconds % 2 === 0) {
+                        echo '<img src="бали.webp" alt="Динамическое фото">';
+                    } else {
+                        echo '<img src="бали2.webp" alt="Динамическое фото">';
+                    }
+                    ?>
+                    <div class="card-content">
+                        <h3>Бали, Индонезия</h3>
+                        <p>Остров богов с прекрасными пляжами, рисовыми террасами и уникальной культурой.</p>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="париж.webp" alt="Париж, Франция">
+                    <div class="card-content">
+                        <h3>Париж, Франция</h3>
+                        <p>Город любви с Эйфелевой башней, Лувром и неповторимой атмосферой.</p>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="токио.webp" alt="Токио, Япония">
+                    <div class="card-content">
+                        <h3>Токио, Япония</h3>
+                        <p>Современный мегаполис с древними традициями, уникальной кухней и технологиями.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section>
+            <h2>Стоимость туров</h2>
+            <div class="pricing">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Направление</th>
+                            <th>Продолжительность</th>
+                            <th>Стоимость на человека</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // ДИНАМИЧЕСКИЙ СПИСОК ТУРОВ ИЗ МАССИВА
+                        $tours = [
+                            ['Бали, Индонезия', '10 дней', '85 000 руб.'],
+                            ['Париж, Франция', '7 дней', '65 000 руб.'],
+                            ['Токио, Япония', '12 дней', '120 000 руб.'],
+                            ['Рим, Италия', '8 дней', '78 000 руб.'],
+                            ['Нью-Йорк, США', '9 дней', '95 000 руб.']
+                        ];
+                        
+                        foreach ($tours as $tour) {
+                            echo '<tr>';
+                            echo '<td>' . $tour[0] . '</td>';
+                            echo '<td>' . $tour[1] . '</td>';
+                            echo '<td>' . $tour[2] . '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Форма обратной связи -->
+        <section id="feedback" class="feedback-section">
+            <div class="feedback-form">
+                <h2 style="color: #1a2a6c;">Обратная связь</h2>
+                <form id="feedbackForm" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">ФИО</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Откуда узнали о нас?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="source" value="search" required> Поисковые системы</label>
+                            <label><input type="radio" name="source" value="social"> Социальные сети</label>
+                            <label><input type="radio" name="source" value="friend"> Рекомендация друзей</label>
+                            <label><input type="radio" name="source" value="other"> Другое</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="type">Тип обращения</label>
+                        <select id="type" name="type" required>
+                            <option value="">Выберите тип обращения</option>
+                            <option value="complaint">Жалоба</option>
+                            <option value="suggestion">Предложение</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Текст сообщения</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attachment">Вложения</label>
+                        <input type="file" id="attachment" name="attachment">
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="consent" name="consent" required>
+                            Даю согласие на обработку персональных данных
+                        </label>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Форма аутентификации -->
+    <section id="auth" class="auth-container">
+        <div class="auth-form">
+            <h2>Вход в систему</h2>
+            <form id="authForm" method="post">
+                <div class="form-group">
+                    <label for="login">Логин</label>
+                    <input type="text" id="login" name="login" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" name="remember">
+                        Запомнить меня
+                    </label>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn">Войти</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    
+    <footer id="contacts">
+        <div class="container footer-content">
+            <div class="contact-info">
+                <p>Телефон: +7 (123) 456-78-90</p>
+                <p>Email: info@travelwithus.ru</p>
+                <p>Адрес: Москва, ул. Путешественников, 15</p>
+            </div>
+            <div class="social-links">
+                <a href="#">VK</a>
+                <a href="#">Telegram</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Путешествуй с нами. Все права защищены.</p>
+                <?php
+                // ДИНАМИЧЕСКАЯ ДАТА И ВРЕМЯ В ПОДВАЛЕ
+                $current_datetime = date('d.m.Y в H:s');
+                echo '<p><em>Сформировано ' . $current_datetime . '</em></p>';
+                ?>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы обратной связи
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Создаем FormData объект для сбора данных формы
+            const formData = new FormData(this);
+            
+            // Отправляем данные методом POST на https://httpbin.org/post
+            fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Данные формы обратной связи отправлены:', data);
+                alert('Форма успешно отправлена! Проверьте консоль для просмотра отправленных данных.');
+                
+                // Очищаем форму после успешной отправки
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке формы:', error);
+                alert('Произошла ошибка при отправке формы.');
+            });
+        });
+        
+        // Обработка формы аутентификации
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Создаем FormData объект для сбора данных формы
+            const formData = new FormData(this);
+            
+            // Отправляем данные методом POST на https://httpbin.org/post
+            fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Данные формы аутентификации отправлены:', data);
+                alert('Форма успешно отправлена! Проверьте консоль для просмотра отправленных данных.');
+                
+                // Очищаем форму после успешной отправки
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке формы:', error);
+                alert('Произошла ошибка при отправке формы.');
+            });
+        });
+    </script>
+</body>
+</html>

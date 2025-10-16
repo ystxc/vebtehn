@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Путешествуй с нами - лучшие туры по всему миру</title>
+    <title>Обратная связь - Путешествуй с нами</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +78,7 @@
         }
         
         .hero {
-            background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: url('главная.webp') no-repeat center center/cover;
             height: 500px;
             display: flex;
             align-items: center;
@@ -220,7 +220,7 @@
         
         /* Стили для формы обратной связи */
         .feedback-section {
-            background: url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: url('обратнаясвязь.webp') no-repeat center center/cover;
             padding: 3rem 0;
             border-radius: 8px;
             position: relative;
@@ -306,7 +306,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: url('вход.webp') no-repeat center center/cover;
             position: relative;
             padding: 2rem;
         }
@@ -399,18 +399,42 @@
             }
         }
     </style>
+    <style>
+.selected_menu {
+    background-color: #1a2a6c;
+    color: white !important;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+</style>
 </head>
 <body>
     
     <header>
         <div class="container header-content">
             <div class="logo">Путешествуй с нами</div>
+            <?php
+// ДИНАМИЧЕСКОЕ МЕНЮ - массив данных
+$menu_items = [
+    ['link' => 'index.php', 'text' => 'Главная', 'current' => false],
+    ['link' => 'feedback.php', 'text' => 'Обратная связь', 'current' => true],
+    ['link' => 'contacts.php', 'text' => 'Контакты', 'current' => false],
+    ['link' => '#auth', 'text' => 'Войти', 'current' => false]
+]
+?>
+
             <nav>
                 <ul>
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#feedback">Обратная связь</a></li>
-                    <li><a href="#auth">Войти</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
+                    <?php
+                    foreach ($menu_items as $item) {
+                        echo '<li><a href="' . $item['link'] . '"';
+                        if ($item['current']) {
+                            echo ' class="selected_menu"';
+                        }
+                        echo '>' . $item['text'] . '</a></li>';
+                    }
+                    ?>
                 </ul>
             </nav>
         </div>
@@ -418,85 +442,6 @@
 
     
     <main class="container">
-        
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Откройте для себя мир</h1>
-                <p>Мы предлагаем лучшие туры по всему миру с комфортом и заботой о вас</p>
-                <a href="#" class="btn">Выбрать тур</a>
-            </div>
-        </section>
-
-        
-        <section>
-            <h2>Популярные направления</h2>
-            <div class="destinations">
-                <div class="destination-card">
-                    <img src="i (2).webp" alt="Бали, Индонезия">
-                    <div class="card-content">
-                        <h3>Бали, Индонезия</h3>
-                        <p>Остров богов с прекрасными пляжами, рисовыми террасами и уникальной культурой.</p>
-                    </div>
-                </div>
-                <div class="destination-card">
-                    <img src="i.webp" alt="Париж, Франция">
-                    <div class="card-content">
-                        <h3>Париж, Франция</h3>
-                        <p>Город любви с Эйфелевой башней, Лувром и неповторимой атмосферой.</p>
-                    </div>
-                </div>
-                <div class="destination-card">
-                    <img src="i (1).webp" alt="Токио, Япония">
-                    <div class="card-content">
-                        <h3>Токио, Япония</h3>
-                        <p>Современный мегаполис с древними традициями, уникальной кухней и технологиями.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        
-        <section>
-            <h2>Стоимость туров</h2>
-            <div class="pricing">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Направление</th>
-                            <th>Продолжительность</th>
-                            <th>Стоимость на человека</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Бали, Индонезия</td>
-                            <td>10 дней</td>
-                            <td>85 000 руб.</td>
-                        </tr>
-                        <tr>
-                            <td>Париж, Франция</td>
-                            <td>7 дней</td>
-                            <td>65 000 руб.</td>
-                        </tr>
-                        <tr>
-                            <td>Токио, Япония</td>
-                            <td>12 дней</td>
-                            <td>120 000 руб.</td>
-                        </tr>
-                        <tr>
-                            <td>Рим, Италия</td>
-                            <td>8 дней</td>
-                            <td>78 000 руб.</td>
-                        </tr>
-                        <tr>
-                            <td>Нью-Йорк, США</td>
-                            <td>9 дней</td>
-                            <td>95 000 руб.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
         
         <!-- Форма обратной связи -->
         <section id="feedback" class="feedback-section">
@@ -557,35 +502,6 @@
         </section>
     </main>
     
-    <!-- Форма аутентификации -->
-    <section id="auth" class="auth-container">
-        <div class="auth-form">
-            <h2>Вход в систему</h2>
-            <form id="authForm" method="post">
-                <div class="form-group">
-                    <label for="login">Логин</label>
-                    <input type="text" id="login" name="login" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                
-                <div class="form-group checkbox-group">
-                    <label>
-                        <input type="checkbox" name="remember">
-                        Запомнить меня
-                    </label>
-                </div>
-                
-                <div class="form-submit">
-                    <button type="submit" class="btn">Войти</button>
-                </div>
-            </form>
-        </div>
-    </section>
-
     
     <footer id="contacts">
         <div class="container footer-content">
@@ -601,8 +517,13 @@
                 <a href="#">YouTube</a>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Путешествуй с нами. Все права защищены.</p>
-            </div>
+    <p>&copy; 2025 Путешествуй с нами. Все права защищены.</p>
+    <?php
+    // ДИНАМИЧЕСКАЯ ДАТА И ВРЕМЯ В ПОДВАЛЕ
+    $current_datetime = date('d.m.Y в H-i:s');
+    echo '<p><em>Сформировано ' . $current_datetime . '</em></p>';
+    ?>
+</div>
         </div>
     </footer>
 

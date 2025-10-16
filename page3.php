@@ -1,4 +1,18 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Путешествуй с нами</title>
+</head>
+</html>
+    
+</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -68,7 +82,7 @@
         }
         
         .hero {
-            background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: url('главная.webp') no-repeat center center/cover;
             height: 500px;
             display: flex;
             align-items: center;
@@ -210,7 +224,7 @@
         
         /* Стили для формы обратной связи */
         .feedback-section {
-            background: url('https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: url('обратнаясвязь.webp') no-repeat center center/cover;
             padding: 3rem 0;
             border-radius: 8px;
             position: relative;
@@ -296,7 +310,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: url('вход.webp') no-repeat center center/cover;
             position: relative;
             padding: 2rem;
         }
@@ -388,4 +402,76 @@
                 width: 90%;
             }
         }
-        
+    </style>
+    <style>
+.selected_menu {
+    background-color: #1a2a6c;
+    color: white !important;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+</style>
+</head>
+<body>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">Путешествуй с нами</div>
+            <?php
+// ДИНАМИЧЕСКОЕ МЕНЮ - массив данных
+$menu_items = [
+    ['link' => 'index.php', 'text' => 'Главная', 'current' => false],
+    ['link' => 'feedback.php', 'text' => 'Обратная связь', 'current' => false],
+    ['link' => 'contacts.php', 'text' => 'Контакты', 'current' => true],
+    ['link' => '#auth', 'text' => 'Войти', 'current' => false]
+];
+?>
+
+<nav>
+    <ul>
+        <?php
+        foreach ($menu_items as $item) {
+            echo '<li><a href="' . $item['link'] . '"';
+        ?>
+        <?php
+            if ($item['current']) {
+                echo ' class="selected_menu"';
+            }
+            echo '>' . $item['text'] . '</a></li>';
+        }
+        ?>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+    
+    <main class="container">
+
+    
+    <footer id="contacts">
+        <div class="container footer-content">
+            <div class="contact-info">
+                <p>Телефон: +7 (123) 456-78-90</p>
+                <p>Email: info@travelwithus.ru</p>
+                <p>Адрес: Москва, ул. Путешественников, 15</p>
+            </div>
+            <div class="social-links">
+                <a href="#">VK</a>
+                <a href="#">Telegram</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+            <div class="copyright">
+    <p>&copy; 2025 Путешествуй с нами. Все права защищены.</p>
+    <?php
+    // ДИНАМИЧЕСКАЯ ДАТА И ВРЕМЯ В ПОДВАЛЕ
+    $current_datetime = date('d.m.Y в H:i:s');
+    echo '<p><em>Сформировано ' . $current_datetime . '</em></p>';
+    ?>
+</div>
+        </div>
+    </footer>
+</body>
+</html>
